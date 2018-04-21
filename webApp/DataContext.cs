@@ -9,7 +9,6 @@ namespace rsiProj1
     public class DataContext : DbContext
     {
         public DataContext()
-            : base("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"C:\\Users\\P50\\Documents\\Visual Studio 2017\\Projects\\rsiProj1\\db.mdf\";Integrated Security=True;Connect Timeout=30")
         {
         }
 
