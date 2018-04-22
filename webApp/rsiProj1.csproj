@@ -54,6 +54,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13\lib\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -102,8 +105,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="Services\InforService.svc" />
-    <Content Include="Services\InfoService.asmx" />
+    <Content Include="Services\InfoManageService.svc" />
+    <Content Include="Services\InfoService.svc" />
+    <Compile Include="Services\IInfoManageService.cs" />
+    <Compile Include="Services\InfoManageService.svc.cs">
+      <DependentUpon>InfoManageService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Services\AdminHeader.cs" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -111,10 +119,6 @@
     <Compile Include="Extensions\DateTimeExtension.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Services\IInforService.cs" />
-    <Compile Include="Services\InforService.svc.cs">
-      <DependentUpon>InforService.svc</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201804211430239_InitialCreate.cs" />
     <Compile Include="Migrations\201804211430239_InitialCreate.Designer.cs">
@@ -135,11 +139,11 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Type.cs" />
     <Compile Include="Models\Event.cs" />
-    <Compile Include="Services\InfoService.asmx.cs">
-      <DependentUpon>InfoService.asmx</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IInfoService.cs" />
+    <Compile Include="Services\InfoService.svc.cs">
+      <DependentUpon>InfoService.svc</DependentUpon>
+    </Compile>
     <Compile Include="Utils\DateTimeUtils.cs" />
     <Compile Include="ViewModels\EventEditViewModel.cs" />
     <Compile Include="ViewModels\EventListItemViewModel.cs" />

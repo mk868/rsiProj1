@@ -1,4 +1,5 @@
-﻿using appClient.InfoService;
+﻿using appClient.InfoManageService;
+using appClient.InfoService;
 using appClient.Models;
 using rsiProj1.Extensions;
 using System;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,14 +17,17 @@ namespace appClient
 {
     public partial class Form1 : Form
     {
-        InfoServiceSoapClient _infoServiceSoapClient;
+        InfoServiceClient _infoServiceSoapClient;
+        InfoManageServiceClient _infoManageServiceSoapClient;
         EventViewModel _eventDetails;
+        public const string PdfFileName = "summary.pdf";
 
         public Form1()
         {
             InitializeComponent();
 
-            _infoServiceSoapClient = new InfoServiceSoapClient();
+            _infoServiceSoapClient = new InfoServiceClient();
+            _infoManageServiceSoapClient = new InfoManageServiceClient();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -34,7 +39,7 @@ namespace appClient
         {
             listBox1.Items.Clear();
 
-            EventListItemViewModel[] events;
+            List<EventListItemViewModel> events;
 
             if (radioButtonDay.Checked)
             {
@@ -91,6 +96,21 @@ namespace appClient
 
         }
 
+        public AdminHeader GetUserPassword()
+        {
+            var passwordForm = new PasswordForm();
+
+            if (passwordForm.ShowDialog() != DialogResult.OK)
+            {
+                return null;
+            }
+
+            var header = new AdminHeader();
+            header.Password = passwordForm.Password;
+            return header;
+        }
+
+
         private void button2_Click(object sender, EventArgs e)
         {
             if (_eventDetails == null)
@@ -111,9 +131,13 @@ namespace appClient
                 editModel.Description = editForm.EventDescription;
                 editModel.Date = editForm.EventDate.ToString();
 
+                var header = GetUserPassword();
+                if (header == null)
+                    return;
+
                 try
                 {
-                    _infoServiceSoapClient.EditEvent(editModel);
+                    _infoManageServiceSoapClient.EditEvent(header, editModel);
                 }
                 catch (Exception ex)
                 {
@@ -132,9 +156,14 @@ namespace appClient
         {
             if (_eventDetails == null)
                 return;
+
+            var header = GetUserPassword();
+            if (header == null)
+                return;
+
             try
             {
-                _infoServiceSoapClient.RemoveEvent(_eventDetails.Id);
+                _infoManageServiceSoapClient.RemoveEvent(header, _eventDetails.Id);
             }
             catch (Exception ex)
             {
@@ -155,9 +184,13 @@ namespace appClient
                 editModel.Description = editForm.EventDescription;
                 editModel.Date = editForm.EventDate.ToString();
 
+                var header = GetUserPassword();
+                if (header == null)
+                    return;
+
                 try
                 {
-                    _infoServiceSoapClient.AddEvent(editModel);
+                    _infoManageServiceSoapClient.AddEvent(header, editModel);
                 }
                 catch (Exception ex)
                 {
@@ -169,6 +202,27 @@ namespace appClient
                 RefreshEventList();
                 return;
             }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            byte[] data;
+            
+            if (radioButtonDay.Checked)
+            {
+                data = _infoServiceSoapClient.GetPdfSummaryForDay(dateTimePicker1.Value.ToString("yyyy-MM-dd"));
+            }
+            else if (radioButtonWeekOfYear.Checked)
+            {
+                data = _infoServiceSoapClient.GetPdfSummaryForWeek(dateTimePicker1.Value.GetWeekOfYear(), dateTimePicker1.Value.Year);
+            }
+            else
+            {
+                return;
+            }
+
+            File.WriteAllBytes(PdfFileName, data);
+            System.Diagnostics.Process.Start(PdfFileName);
         }
     }
 }

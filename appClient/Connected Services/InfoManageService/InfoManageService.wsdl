@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="InfoManageService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/rsiProj1.ViewModels" />
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/" />
+      <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xs:element name="MessageBoxOf_AdminHeader_EventAddViewModel">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/rsiProj1.ViewModels" minOccurs="0" name="Body" nillable="true" type="q1:EventAddViewModel" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/" name="Header" nillable="true" type="q2:AdminHeader" />
+      <xs:element name="MessageBoxOf_Guid">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="Body" type="q3:guid" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="MessageBoxOf_AdminHeader_EventEditViewModel">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/rsiProj1.ViewModels" minOccurs="0" name="Body" nillable="true" type="q4:EventEditViewModel" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="MessageBoxOf_AdminHeader_Guid">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="Body" type="q5:guid" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="MessageBoxOf_Boolean">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="Body" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="anyType" nillable="true" type="xs:anyType" />
+      <xs:element name="anyURI" nillable="true" type="xs:anyURI" />
+      <xs:element name="base64Binary" nillable="true" type="xs:base64Binary" />
+      <xs:element name="boolean" nillable="true" type="xs:boolean" />
+      <xs:element name="byte" nillable="true" type="xs:byte" />
+      <xs:element name="dateTime" nillable="true" type="xs:dateTime" />
+      <xs:element name="decimal" nillable="true" type="xs:decimal" />
+      <xs:element name="double" nillable="true" type="xs:double" />
+      <xs:element name="float" nillable="true" type="xs:float" />
+      <xs:element name="int" nillable="true" type="xs:int" />
+      <xs:element name="long" nillable="true" type="xs:long" />
+      <xs:element name="QName" nillable="true" type="xs:QName" />
+      <xs:element name="short" nillable="true" type="xs:short" />
+      <xs:element name="string" nillable="true" type="xs:string" />
+      <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte" />
+      <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt" />
+      <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong" />
+      <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort" />
+      <xs:element name="char" nillable="true" type="tns:char" />
+      <xs:simpleType name="char">
+        <xs:restriction base="xs:int" />
+      </xs:simpleType>
+      <xs:element name="duration" nillable="true" type="tns:duration" />
+      <xs:simpleType name="duration">
+        <xs:restriction base="xs:duration">
+          <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?" />
+          <xs:minInclusive value="-P10675199DT2H48M5.4775808S" />
+          <xs:maxInclusive value="P10675199DT2H48M5.4775807S" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="guid" nillable="true" type="tns:guid" />
+      <xs:simpleType name="guid">
+        <xs:restriction base="xs:string">
+          <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:attribute name="FactoryType" type="xs:QName" />
+      <xs:attribute name="Id" type="xs:ID" />
+      <xs:attribute name="Ref" type="xs:IDREF" />
+    </xs:schema>
+    <xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/rsiProj1.ViewModels" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/rsiProj1.ViewModels" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xs:complexType name="EventAddViewModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Date" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TypeName" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="EventAddViewModel" nillable="true" type="tns:EventAddViewModel" />
+      <xs:complexType name="EventEditViewModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Date" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Id" type="ser:guid" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TypeName" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="EventEditViewModel" nillable="true" type="tns:EventEditViewModel" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="AdminHeader">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="AdminHeader" nillable="true" type="tns:AdminHeader" />
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="MessageBoxOf_AdminHeader_EventAddViewModel">
+    <wsdl:part name="parameters" element="tns:MessageBoxOf_AdminHeader_EventAddViewModel" />
+  </wsdl:message>
+  <wsdl:message name="MessageBoxOf_AdminHeader_EventAddViewModel_Headers">
+    <wsdl:part name="Header" element="tns:Header" />
+  </wsdl:message>
+  <wsdl:message name="MessageBoxOf_Guid">
+    <wsdl:part name="parameters" element="tns:MessageBoxOf_Guid" />
+  </wsdl:message>
+  <wsdl:message name="MessageBoxOf_AdminHeader_EventEditViewModel">
+    <wsdl:part name="parameters" element="tns:MessageBoxOf_AdminHeader_EventEditViewModel" />
+  </wsdl:message>
+  <wsdl:message name="MessageBoxOf_AdminHeader_EventEditViewModel_Headers">
+    <wsdl:part name="Header" element="tns:Header" />
+  </wsdl:message>
+  <wsdl:message name="MessageBoxOf_AdminHeader_Guid">
+    <wsdl:part name="parameters" element="tns:MessageBoxOf_AdminHeader_Guid" />
+  </wsdl:message>
+  <wsdl:message name="MessageBoxOf_AdminHeader_Guid_Headers">
+    <wsdl:part name="Header" element="tns:Header" />
+  </wsdl:message>
+  <wsdl:message name="MessageBoxOf_Boolean">
+    <wsdl:part name="parameters" element="tns:MessageBoxOf_Boolean" />
+  </wsdl:message>
+  <wsdl:portType name="IInfoManageService">
+    <wsdl:operation name="AddEvent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInfoManageService/AddEvent" name="MessageBoxOf_AdminHeader_EventAddViewModel" message="tns:MessageBoxOf_AdminHeader_EventAddViewModel" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInfoManageService/AddEventResponse" name="MessageBoxOf_Guid" message="tns:MessageBoxOf_Guid" />
+    </wsdl:operation>
+    <wsdl:operation name="EditEvent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInfoManageService/EditEvent" name="MessageBoxOf_AdminHeader_EventEditViewModel" message="tns:MessageBoxOf_AdminHeader_EventEditViewModel" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInfoManageService/EditEventResponse" name="MessageBoxOf_Guid" message="tns:MessageBoxOf_Guid" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveEvent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInfoManageService/RemoveEvent" name="MessageBoxOf_AdminHeader_Guid" message="tns:MessageBoxOf_AdminHeader_Guid" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInfoManageService/RemoveEventResponse" name="MessageBoxOf_Boolean" message="tns:MessageBoxOf_Boolean" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IInfoManageService" type="tns:IInfoManageService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddEvent">
+      <soap:operation soapAction="http://tempuri.org/IInfoManageService/AddEvent" style="document" />
+      <wsdl:input name="MessageBoxOf_AdminHeader_EventAddViewModel">
+        <soap:header message="tns:MessageBoxOf_AdminHeader_EventAddViewModel_Headers" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="MessageBoxOf_Guid">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditEvent">
+      <soap:operation soapAction="http://tempuri.org/IInfoManageService/EditEvent" style="document" />
+      <wsdl:input name="MessageBoxOf_AdminHeader_EventEditViewModel">
+        <soap:header message="tns:MessageBoxOf_AdminHeader_EventEditViewModel_Headers" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="MessageBoxOf_Guid">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveEvent">
+      <soap:operation soapAction="http://tempuri.org/IInfoManageService/RemoveEvent" style="document" />
+      <wsdl:input name="MessageBoxOf_AdminHeader_Guid">
+        <soap:header message="tns:MessageBoxOf_AdminHeader_Guid_Headers" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="MessageBoxOf_Boolean">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="InfoManageService">
+    <wsdl:port name="BasicHttpBinding_IInfoManageService" binding="tns:BasicHttpBinding_IInfoManageService">
+      <soap:address location="http://localhost:54218/Services/InfoManageService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

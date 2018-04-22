@@ -15,29 +15,33 @@ namespace appClient.InfoService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="EventViewModel", Namespace="http://tempuri.org/")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="EventViewModel", Namespace="http://schemas.datacontract.org/2004/07/rsiProj1.ViewModels")]
     [System.SerializableAttribute()]
     public partial class EventViewModel : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        private System.Guid IdField;
-        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime DateField;
         
-        private int WeekOfYearField;
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string DescriptionField;
-        
         private System.Guid TypeIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string TypeNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int WeekOfYearField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -49,20 +53,7 @@ namespace appClient.InfoService {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        public System.Guid Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=1)]
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.DateTime Date {
             get {
                 return this.DateField;
@@ -75,33 +66,7 @@ namespace appClient.InfoService {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=2)]
-        public int WeekOfYear {
-            get {
-                return this.WeekOfYearField;
-            }
-            set {
-                if ((this.WeekOfYearField.Equals(value) != true)) {
-                    this.WeekOfYearField = value;
-                    this.RaisePropertyChanged("WeekOfYear");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=4)]
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Description {
             get {
                 return this.DescriptionField;
@@ -114,7 +79,33 @@ namespace appClient.InfoService {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=5)]
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Guid TypeId {
             get {
                 return this.TypeIdField;
@@ -127,7 +118,7 @@ namespace appClient.InfoService {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=6)]
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string TypeName {
             get {
                 return this.TypeNameField;
@@ -140,71 +131,7 @@ namespace appClient.InfoService {
             }
         }
         
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="EventListItemViewModel", Namespace="http://tempuri.org/")]
-    [System.SerializableAttribute()]
-    public partial class EventListItemViewModel : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        private System.Guid IdField;
-        
-        private System.DateTime DateField;
-        
-        private int WeekOfYearField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        public System.Guid Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=1)]
-        public System.DateTime Date {
-            get {
-                return this.DateField;
-            }
-            set {
-                if ((this.DateField.Equals(value) != true)) {
-                    this.DateField = value;
-                    this.RaisePropertyChanged("Date");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=2)]
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public int WeekOfYear {
             get {
                 return this.WeekOfYearField;
@@ -217,19 +144,6 @@ namespace appClient.InfoService {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -242,24 +156,24 @@ namespace appClient.InfoService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="EventAddViewModel", Namespace="http://tempuri.org/")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="EventListItemViewModel", Namespace="http://schemas.datacontract.org/2004/07/rsiProj1.ViewModels")]
     [System.SerializableAttribute()]
-    public partial class EventAddViewModel : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class EventListItemViewModel : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string DateField;
+        private System.DateTime DateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string DescriptionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string TypeNameField;
+        private int WeekOfYearField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -271,102 +185,20 @@ namespace appClient.InfoService {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
-        public string Date {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime Date {
             get {
                 return this.DateField;
             }
             set {
-                if ((object.ReferenceEquals(this.DateField, value) != true)) {
+                if ((this.DateField.Equals(value) != true)) {
                     this.DateField = value;
                     this.RaisePropertyChanged("Date");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
-        public string Description {
-            get {
-                return this.DescriptionField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
-                    this.DescriptionField = value;
-                    this.RaisePropertyChanged("Description");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
-        public string TypeName {
-            get {
-                return this.TypeNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TypeNameField, value) != true)) {
-                    this.TypeNameField = value;
-                    this.RaisePropertyChanged("TypeName");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="EventEditViewModel", Namespace="http://tempuri.org/")]
-    [System.SerializableAttribute()]
-    public partial class EventEditViewModel : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        private System.Guid IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string DateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string DescriptionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string TypeNameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Guid Id {
             get {
                 return this.IdField;
@@ -379,20 +211,7 @@ namespace appClient.InfoService {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
-        public string Date {
-            get {
-                return this.DateField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DateField, value) != true)) {
-                    this.DateField = value;
-                    this.RaisePropertyChanged("Date");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Name {
             get {
                 return this.NameField;
@@ -405,28 +224,15 @@ namespace appClient.InfoService {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
-        public string Description {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int WeekOfYear {
             get {
-                return this.DescriptionField;
+                return this.WeekOfYearField;
             }
             set {
-                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
-                    this.DescriptionField = value;
-                    this.RaisePropertyChanged("Description");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=4)]
-        public string TypeName {
-            get {
-                return this.TypeNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TypeNameField, value) != true)) {
-                    this.TypeNameField = value;
-                    this.RaisePropertyChanged("TypeName");
+                if ((this.WeekOfYearField.Equals(value) != true)) {
+                    this.WeekOfYearField = value;
+                    this.RaisePropertyChanged("WeekOfYear");
                 }
             }
         }
@@ -442,646 +248,105 @@ namespace appClient.InfoService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="InfoService.InfoServiceSoap")]
-    public interface InfoServiceSoap {
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="InfoService.IInfoService")]
+    public interface IInfoService {
         
-        // CODEGEN: Generating message contract since element name id from namespace http://tempuri.org/ is not marked nillable
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetEventById", ReplyAction="*")]
-        appClient.InfoService.GetEventByIdResponse GetEventById(appClient.InfoService.GetEventByIdRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInfoService/GetEventById", ReplyAction="http://tempuri.org/IInfoService/GetEventByIdResponse")]
+        appClient.InfoService.EventViewModel GetEventById(string id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetEventById", ReplyAction="*")]
-        System.Threading.Tasks.Task<appClient.InfoService.GetEventByIdResponse> GetEventByIdAsync(appClient.InfoService.GetEventByIdRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInfoService/GetEventById", ReplyAction="http://tempuri.org/IInfoService/GetEventByIdResponse")]
+        System.Threading.Tasks.Task<appClient.InfoService.EventViewModel> GetEventByIdAsync(string id);
         
-        // CODEGEN: Generating message contract since element name date from namespace http://tempuri.org/ is not marked nillable
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetEventsForDay", ReplyAction="*")]
-        appClient.InfoService.GetEventsForDayResponse GetEventsForDay(appClient.InfoService.GetEventsForDayRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInfoService/GetEventsForDay", ReplyAction="http://tempuri.org/IInfoService/GetEventsForDayResponse")]
+        System.Collections.Generic.List<appClient.InfoService.EventListItemViewModel> GetEventsForDay(string date);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetEventsForDay", ReplyAction="*")]
-        System.Threading.Tasks.Task<appClient.InfoService.GetEventsForDayResponse> GetEventsForDayAsync(appClient.InfoService.GetEventsForDayRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInfoService/GetEventsForDay", ReplyAction="http://tempuri.org/IInfoService/GetEventsForDayResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<appClient.InfoService.EventListItemViewModel>> GetEventsForDayAsync(string date);
         
-        // CODEGEN: Generating message contract since element name GetEventsForWeekResult from namespace http://tempuri.org/ is not marked nillable
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetEventsForWeek", ReplyAction="*")]
-        appClient.InfoService.GetEventsForWeekResponse GetEventsForWeek(appClient.InfoService.GetEventsForWeekRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInfoService/GetEventsForWeek", ReplyAction="http://tempuri.org/IInfoService/GetEventsForWeekResponse")]
+        System.Collections.Generic.List<appClient.InfoService.EventListItemViewModel> GetEventsForWeek(int week, System.Nullable<int> year);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetEventsForWeek", ReplyAction="*")]
-        System.Threading.Tasks.Task<appClient.InfoService.GetEventsForWeekResponse> GetEventsForWeekAsync(appClient.InfoService.GetEventsForWeekRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInfoService/GetEventsForWeek", ReplyAction="http://tempuri.org/IInfoService/GetEventsForWeekResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<appClient.InfoService.EventListItemViewModel>> GetEventsForWeekAsync(int week, System.Nullable<int> year);
         
-        // CODEGEN: Generating message contract since element name model from namespace http://tempuri.org/ is not marked nillable
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/AddEvent", ReplyAction="*")]
-        appClient.InfoService.AddEventResponse AddEvent(appClient.InfoService.AddEventRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInfoService/GetPdfSummaryForDay", ReplyAction="http://tempuri.org/IInfoService/GetPdfSummaryForDayResponse")]
+        byte[] GetPdfSummaryForDay(string date);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/AddEvent", ReplyAction="*")]
-        System.Threading.Tasks.Task<appClient.InfoService.AddEventResponse> AddEventAsync(appClient.InfoService.AddEventRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInfoService/GetPdfSummaryForDay", ReplyAction="http://tempuri.org/IInfoService/GetPdfSummaryForDayResponse")]
+        System.Threading.Tasks.Task<byte[]> GetPdfSummaryForDayAsync(string date);
         
-        // CODEGEN: Generating message contract since element name model from namespace http://tempuri.org/ is not marked nillable
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EditEvent", ReplyAction="*")]
-        appClient.InfoService.EditEventResponse EditEvent(appClient.InfoService.EditEventRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInfoService/GetPdfSummaryForWeek", ReplyAction="http://tempuri.org/IInfoService/GetPdfSummaryForWeekResponse")]
+        byte[] GetPdfSummaryForWeek(int week, System.Nullable<int> year);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EditEvent", ReplyAction="*")]
-        System.Threading.Tasks.Task<appClient.InfoService.EditEventResponse> EditEventAsync(appClient.InfoService.EditEventRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/RemoveEvent", ReplyAction="*")]
-        bool RemoveEvent(System.Guid id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/RemoveEvent", ReplyAction="*")]
-        System.Threading.Tasks.Task<bool> RemoveEventAsync(System.Guid id);
-        
-        // CODEGEN: Generating message contract since element name HelloWorldResult from namespace http://tempuri.org/ is not marked nillable
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/HelloWorld", ReplyAction="*")]
-        appClient.InfoService.HelloWorldResponse HelloWorld(appClient.InfoService.HelloWorldRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/HelloWorld", ReplyAction="*")]
-        System.Threading.Tasks.Task<appClient.InfoService.HelloWorldResponse> HelloWorldAsync(appClient.InfoService.HelloWorldRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInfoService/GetPdfSummaryForWeek", ReplyAction="http://tempuri.org/IInfoService/GetPdfSummaryForWeekResponse")]
+        System.Threading.Tasks.Task<byte[]> GetPdfSummaryForWeekAsync(int week, System.Nullable<int> year);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IInfoServiceChannel : appClient.InfoService.IInfoService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class GetEventByIdRequest {
+    public partial class InfoServiceClient : System.ServiceModel.ClientBase<appClient.InfoService.IInfoService>, appClient.InfoService.IInfoService {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetEventById", Namespace="http://tempuri.org/", Order=0)]
-        public appClient.InfoService.GetEventByIdRequestBody Body;
-        
-        public GetEventByIdRequest() {
+        public InfoServiceClient() {
         }
         
-        public GetEventByIdRequest(appClient.InfoService.GetEventByIdRequestBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class GetEventByIdRequestBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public string id;
-        
-        public GetEventByIdRequestBody() {
-        }
-        
-        public GetEventByIdRequestBody(string id) {
-            this.id = id;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class GetEventByIdResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetEventByIdResponse", Namespace="http://tempuri.org/", Order=0)]
-        public appClient.InfoService.GetEventByIdResponseBody Body;
-        
-        public GetEventByIdResponse() {
-        }
-        
-        public GetEventByIdResponse(appClient.InfoService.GetEventByIdResponseBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class GetEventByIdResponseBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public appClient.InfoService.EventViewModel GetEventByIdResult;
-        
-        public GetEventByIdResponseBody() {
-        }
-        
-        public GetEventByIdResponseBody(appClient.InfoService.EventViewModel GetEventByIdResult) {
-            this.GetEventByIdResult = GetEventByIdResult;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class GetEventsForDayRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetEventsForDay", Namespace="http://tempuri.org/", Order=0)]
-        public appClient.InfoService.GetEventsForDayRequestBody Body;
-        
-        public GetEventsForDayRequest() {
-        }
-        
-        public GetEventsForDayRequest(appClient.InfoService.GetEventsForDayRequestBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class GetEventsForDayRequestBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public string date;
-        
-        public GetEventsForDayRequestBody() {
-        }
-        
-        public GetEventsForDayRequestBody(string date) {
-            this.date = date;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class GetEventsForDayResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetEventsForDayResponse", Namespace="http://tempuri.org/", Order=0)]
-        public appClient.InfoService.GetEventsForDayResponseBody Body;
-        
-        public GetEventsForDayResponse() {
-        }
-        
-        public GetEventsForDayResponse(appClient.InfoService.GetEventsForDayResponseBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class GetEventsForDayResponseBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public appClient.InfoService.EventListItemViewModel[] GetEventsForDayResult;
-        
-        public GetEventsForDayResponseBody() {
-        }
-        
-        public GetEventsForDayResponseBody(appClient.InfoService.EventListItemViewModel[] GetEventsForDayResult) {
-            this.GetEventsForDayResult = GetEventsForDayResult;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class GetEventsForWeekRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetEventsForWeek", Namespace="http://tempuri.org/", Order=0)]
-        public appClient.InfoService.GetEventsForWeekRequestBody Body;
-        
-        public GetEventsForWeekRequest() {
-        }
-        
-        public GetEventsForWeekRequest(appClient.InfoService.GetEventsForWeekRequestBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class GetEventsForWeekRequestBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
-        public int week;
-        
-        [System.Runtime.Serialization.DataMemberAttribute(Order=1)]
-        public System.Nullable<int> year;
-        
-        public GetEventsForWeekRequestBody() {
-        }
-        
-        public GetEventsForWeekRequestBody(int week, System.Nullable<int> year) {
-            this.week = week;
-            this.year = year;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class GetEventsForWeekResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetEventsForWeekResponse", Namespace="http://tempuri.org/", Order=0)]
-        public appClient.InfoService.GetEventsForWeekResponseBody Body;
-        
-        public GetEventsForWeekResponse() {
-        }
-        
-        public GetEventsForWeekResponse(appClient.InfoService.GetEventsForWeekResponseBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class GetEventsForWeekResponseBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public appClient.InfoService.EventListItemViewModel[] GetEventsForWeekResult;
-        
-        public GetEventsForWeekResponseBody() {
-        }
-        
-        public GetEventsForWeekResponseBody(appClient.InfoService.EventListItemViewModel[] GetEventsForWeekResult) {
-            this.GetEventsForWeekResult = GetEventsForWeekResult;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class AddEventRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="AddEvent", Namespace="http://tempuri.org/", Order=0)]
-        public appClient.InfoService.AddEventRequestBody Body;
-        
-        public AddEventRequest() {
-        }
-        
-        public AddEventRequest(appClient.InfoService.AddEventRequestBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class AddEventRequestBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public appClient.InfoService.EventAddViewModel model;
-        
-        public AddEventRequestBody() {
-        }
-        
-        public AddEventRequestBody(appClient.InfoService.EventAddViewModel model) {
-            this.model = model;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class AddEventResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="AddEventResponse", Namespace="http://tempuri.org/", Order=0)]
-        public appClient.InfoService.AddEventResponseBody Body;
-        
-        public AddEventResponse() {
-        }
-        
-        public AddEventResponse(appClient.InfoService.AddEventResponseBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class AddEventResponseBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
-        public System.Guid AddEventResult;
-        
-        public AddEventResponseBody() {
-        }
-        
-        public AddEventResponseBody(System.Guid AddEventResult) {
-            this.AddEventResult = AddEventResult;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class EditEventRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="EditEvent", Namespace="http://tempuri.org/", Order=0)]
-        public appClient.InfoService.EditEventRequestBody Body;
-        
-        public EditEventRequest() {
-        }
-        
-        public EditEventRequest(appClient.InfoService.EditEventRequestBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class EditEventRequestBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public appClient.InfoService.EventEditViewModel model;
-        
-        public EditEventRequestBody() {
-        }
-        
-        public EditEventRequestBody(appClient.InfoService.EventEditViewModel model) {
-            this.model = model;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class EditEventResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="EditEventResponse", Namespace="http://tempuri.org/", Order=0)]
-        public appClient.InfoService.EditEventResponseBody Body;
-        
-        public EditEventResponse() {
-        }
-        
-        public EditEventResponse(appClient.InfoService.EditEventResponseBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class EditEventResponseBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
-        public System.Guid EditEventResult;
-        
-        public EditEventResponseBody() {
-        }
-        
-        public EditEventResponseBody(System.Guid EditEventResult) {
-            this.EditEventResult = EditEventResult;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class HelloWorldRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="HelloWorld", Namespace="http://tempuri.org/", Order=0)]
-        public appClient.InfoService.HelloWorldRequestBody Body;
-        
-        public HelloWorldRequest() {
-        }
-        
-        public HelloWorldRequest(appClient.InfoService.HelloWorldRequestBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute()]
-    public partial class HelloWorldRequestBody {
-        
-        public HelloWorldRequestBody() {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class HelloWorldResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="HelloWorldResponse", Namespace="http://tempuri.org/", Order=0)]
-        public appClient.InfoService.HelloWorldResponseBody Body;
-        
-        public HelloWorldResponse() {
-        }
-        
-        public HelloWorldResponse(appClient.InfoService.HelloWorldResponseBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class HelloWorldResponseBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public string HelloWorldResult;
-        
-        public HelloWorldResponseBody() {
-        }
-        
-        public HelloWorldResponseBody(string HelloWorldResult) {
-            this.HelloWorldResult = HelloWorldResult;
-        }
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface InfoServiceSoapChannel : appClient.InfoService.InfoServiceSoap, System.ServiceModel.IClientChannel {
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class InfoServiceSoapClient : System.ServiceModel.ClientBase<appClient.InfoService.InfoServiceSoap>, appClient.InfoService.InfoServiceSoap {
-        
-        public InfoServiceSoapClient() {
-        }
-        
-        public InfoServiceSoapClient(string endpointConfigurationName) : 
+        public InfoServiceClient(string endpointConfigurationName) : 
                 base(endpointConfigurationName) {
         }
         
-        public InfoServiceSoapClient(string endpointConfigurationName, string remoteAddress) : 
+        public InfoServiceClient(string endpointConfigurationName, string remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public InfoServiceSoapClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public InfoServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public InfoServiceSoapClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public InfoServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        appClient.InfoService.GetEventByIdResponse appClient.InfoService.InfoServiceSoap.GetEventById(appClient.InfoService.GetEventByIdRequest request) {
-            return base.Channel.GetEventById(request);
-        }
-        
         public appClient.InfoService.EventViewModel GetEventById(string id) {
-            appClient.InfoService.GetEventByIdRequest inValue = new appClient.InfoService.GetEventByIdRequest();
-            inValue.Body = new appClient.InfoService.GetEventByIdRequestBody();
-            inValue.Body.id = id;
-            appClient.InfoService.GetEventByIdResponse retVal = ((appClient.InfoService.InfoServiceSoap)(this)).GetEventById(inValue);
-            return retVal.Body.GetEventByIdResult;
+            return base.Channel.GetEventById(id);
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<appClient.InfoService.GetEventByIdResponse> appClient.InfoService.InfoServiceSoap.GetEventByIdAsync(appClient.InfoService.GetEventByIdRequest request) {
-            return base.Channel.GetEventByIdAsync(request);
+        public System.Threading.Tasks.Task<appClient.InfoService.EventViewModel> GetEventByIdAsync(string id) {
+            return base.Channel.GetEventByIdAsync(id);
         }
         
-        public System.Threading.Tasks.Task<appClient.InfoService.GetEventByIdResponse> GetEventByIdAsync(string id) {
-            appClient.InfoService.GetEventByIdRequest inValue = new appClient.InfoService.GetEventByIdRequest();
-            inValue.Body = new appClient.InfoService.GetEventByIdRequestBody();
-            inValue.Body.id = id;
-            return ((appClient.InfoService.InfoServiceSoap)(this)).GetEventByIdAsync(inValue);
+        public System.Collections.Generic.List<appClient.InfoService.EventListItemViewModel> GetEventsForDay(string date) {
+            return base.Channel.GetEventsForDay(date);
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        appClient.InfoService.GetEventsForDayResponse appClient.InfoService.InfoServiceSoap.GetEventsForDay(appClient.InfoService.GetEventsForDayRequest request) {
-            return base.Channel.GetEventsForDay(request);
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<appClient.InfoService.EventListItemViewModel>> GetEventsForDayAsync(string date) {
+            return base.Channel.GetEventsForDayAsync(date);
         }
         
-        public appClient.InfoService.EventListItemViewModel[] GetEventsForDay(string date) {
-            appClient.InfoService.GetEventsForDayRequest inValue = new appClient.InfoService.GetEventsForDayRequest();
-            inValue.Body = new appClient.InfoService.GetEventsForDayRequestBody();
-            inValue.Body.date = date;
-            appClient.InfoService.GetEventsForDayResponse retVal = ((appClient.InfoService.InfoServiceSoap)(this)).GetEventsForDay(inValue);
-            return retVal.Body.GetEventsForDayResult;
+        public System.Collections.Generic.List<appClient.InfoService.EventListItemViewModel> GetEventsForWeek(int week, System.Nullable<int> year) {
+            return base.Channel.GetEventsForWeek(week, year);
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<appClient.InfoService.GetEventsForDayResponse> appClient.InfoService.InfoServiceSoap.GetEventsForDayAsync(appClient.InfoService.GetEventsForDayRequest request) {
-            return base.Channel.GetEventsForDayAsync(request);
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<appClient.InfoService.EventListItemViewModel>> GetEventsForWeekAsync(int week, System.Nullable<int> year) {
+            return base.Channel.GetEventsForWeekAsync(week, year);
         }
         
-        public System.Threading.Tasks.Task<appClient.InfoService.GetEventsForDayResponse> GetEventsForDayAsync(string date) {
-            appClient.InfoService.GetEventsForDayRequest inValue = new appClient.InfoService.GetEventsForDayRequest();
-            inValue.Body = new appClient.InfoService.GetEventsForDayRequestBody();
-            inValue.Body.date = date;
-            return ((appClient.InfoService.InfoServiceSoap)(this)).GetEventsForDayAsync(inValue);
+        public byte[] GetPdfSummaryForDay(string date) {
+            return base.Channel.GetPdfSummaryForDay(date);
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        appClient.InfoService.GetEventsForWeekResponse appClient.InfoService.InfoServiceSoap.GetEventsForWeek(appClient.InfoService.GetEventsForWeekRequest request) {
-            return base.Channel.GetEventsForWeek(request);
+        public System.Threading.Tasks.Task<byte[]> GetPdfSummaryForDayAsync(string date) {
+            return base.Channel.GetPdfSummaryForDayAsync(date);
         }
         
-        public appClient.InfoService.EventListItemViewModel[] GetEventsForWeek(int week, System.Nullable<int> year) {
-            appClient.InfoService.GetEventsForWeekRequest inValue = new appClient.InfoService.GetEventsForWeekRequest();
-            inValue.Body = new appClient.InfoService.GetEventsForWeekRequestBody();
-            inValue.Body.week = week;
-            inValue.Body.year = year;
-            appClient.InfoService.GetEventsForWeekResponse retVal = ((appClient.InfoService.InfoServiceSoap)(this)).GetEventsForWeek(inValue);
-            return retVal.Body.GetEventsForWeekResult;
+        public byte[] GetPdfSummaryForWeek(int week, System.Nullable<int> year) {
+            return base.Channel.GetPdfSummaryForWeek(week, year);
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<appClient.InfoService.GetEventsForWeekResponse> appClient.InfoService.InfoServiceSoap.GetEventsForWeekAsync(appClient.InfoService.GetEventsForWeekRequest request) {
-            return base.Channel.GetEventsForWeekAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<appClient.InfoService.GetEventsForWeekResponse> GetEventsForWeekAsync(int week, System.Nullable<int> year) {
-            appClient.InfoService.GetEventsForWeekRequest inValue = new appClient.InfoService.GetEventsForWeekRequest();
-            inValue.Body = new appClient.InfoService.GetEventsForWeekRequestBody();
-            inValue.Body.week = week;
-            inValue.Body.year = year;
-            return ((appClient.InfoService.InfoServiceSoap)(this)).GetEventsForWeekAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        appClient.InfoService.AddEventResponse appClient.InfoService.InfoServiceSoap.AddEvent(appClient.InfoService.AddEventRequest request) {
-            return base.Channel.AddEvent(request);
-        }
-        
-        public System.Guid AddEvent(appClient.InfoService.EventAddViewModel model) {
-            appClient.InfoService.AddEventRequest inValue = new appClient.InfoService.AddEventRequest();
-            inValue.Body = new appClient.InfoService.AddEventRequestBody();
-            inValue.Body.model = model;
-            appClient.InfoService.AddEventResponse retVal = ((appClient.InfoService.InfoServiceSoap)(this)).AddEvent(inValue);
-            return retVal.Body.AddEventResult;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<appClient.InfoService.AddEventResponse> appClient.InfoService.InfoServiceSoap.AddEventAsync(appClient.InfoService.AddEventRequest request) {
-            return base.Channel.AddEventAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<appClient.InfoService.AddEventResponse> AddEventAsync(appClient.InfoService.EventAddViewModel model) {
-            appClient.InfoService.AddEventRequest inValue = new appClient.InfoService.AddEventRequest();
-            inValue.Body = new appClient.InfoService.AddEventRequestBody();
-            inValue.Body.model = model;
-            return ((appClient.InfoService.InfoServiceSoap)(this)).AddEventAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        appClient.InfoService.EditEventResponse appClient.InfoService.InfoServiceSoap.EditEvent(appClient.InfoService.EditEventRequest request) {
-            return base.Channel.EditEvent(request);
-        }
-        
-        public System.Guid EditEvent(appClient.InfoService.EventEditViewModel model) {
-            appClient.InfoService.EditEventRequest inValue = new appClient.InfoService.EditEventRequest();
-            inValue.Body = new appClient.InfoService.EditEventRequestBody();
-            inValue.Body.model = model;
-            appClient.InfoService.EditEventResponse retVal = ((appClient.InfoService.InfoServiceSoap)(this)).EditEvent(inValue);
-            return retVal.Body.EditEventResult;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<appClient.InfoService.EditEventResponse> appClient.InfoService.InfoServiceSoap.EditEventAsync(appClient.InfoService.EditEventRequest request) {
-            return base.Channel.EditEventAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<appClient.InfoService.EditEventResponse> EditEventAsync(appClient.InfoService.EventEditViewModel model) {
-            appClient.InfoService.EditEventRequest inValue = new appClient.InfoService.EditEventRequest();
-            inValue.Body = new appClient.InfoService.EditEventRequestBody();
-            inValue.Body.model = model;
-            return ((appClient.InfoService.InfoServiceSoap)(this)).EditEventAsync(inValue);
-        }
-        
-        public bool RemoveEvent(System.Guid id) {
-            return base.Channel.RemoveEvent(id);
-        }
-        
-        public System.Threading.Tasks.Task<bool> RemoveEventAsync(System.Guid id) {
-            return base.Channel.RemoveEventAsync(id);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        appClient.InfoService.HelloWorldResponse appClient.InfoService.InfoServiceSoap.HelloWorld(appClient.InfoService.HelloWorldRequest request) {
-            return base.Channel.HelloWorld(request);
-        }
-        
-        public string HelloWorld() {
-            appClient.InfoService.HelloWorldRequest inValue = new appClient.InfoService.HelloWorldRequest();
-            inValue.Body = new appClient.InfoService.HelloWorldRequestBody();
-            appClient.InfoService.HelloWorldResponse retVal = ((appClient.InfoService.InfoServiceSoap)(this)).HelloWorld(inValue);
-            return retVal.Body.HelloWorldResult;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<appClient.InfoService.HelloWorldResponse> appClient.InfoService.InfoServiceSoap.HelloWorldAsync(appClient.InfoService.HelloWorldRequest request) {
-            return base.Channel.HelloWorldAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<appClient.InfoService.HelloWorldResponse> HelloWorldAsync() {
-            appClient.InfoService.HelloWorldRequest inValue = new appClient.InfoService.HelloWorldRequest();
-            inValue.Body = new appClient.InfoService.HelloWorldRequestBody();
-            return ((appClient.InfoService.InfoServiceSoap)(this)).HelloWorldAsync(inValue);
+        public System.Threading.Tasks.Task<byte[]> GetPdfSummaryForWeekAsync(int week, System.Nullable<int> year) {
+            return base.Channel.GetPdfSummaryForWeekAsync(week, year);
         }
     }
 }

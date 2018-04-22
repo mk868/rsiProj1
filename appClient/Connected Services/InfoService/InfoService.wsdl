@@ -1,295 +1,237 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="InfoService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="SecureHttp_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsoma:OptimizedMimeSerialization xmlns:wsoma="http://schemas.xmlsoap.org/ws/2004/09/policy/optimizedmimeserialization" />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsdl:types>
-    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
-      <s:import namespace="http://microsoft.com/wsdl/types/" />
-      <s:element name="GetEventById">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="id" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="GetEventByIdResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetEventByIdResult" type="tns:EventViewModel" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:complexType name="EventViewModel">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s1:guid" />
-          <s:element minOccurs="1" maxOccurs="1" name="Date" type="s:dateTime" />
-          <s:element minOccurs="1" maxOccurs="1" name="WeekOfYear" type="s:int" />
-          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="TypeId" type="s1:guid" />
-          <s:element minOccurs="0" maxOccurs="1" name="TypeName" type="s:string" />
-        </s:sequence>
-      </s:complexType>
-      <s:element name="GetEventsForDay">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="date" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="GetEventsForDayResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetEventsForDayResult" type="tns:ArrayOfEventListItemViewModel" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:complexType name="ArrayOfEventListItemViewModel">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="EventListItemViewModel" nillable="true" type="tns:EventListItemViewModel" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="EventListItemViewModel">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s1:guid" />
-          <s:element minOccurs="1" maxOccurs="1" name="Date" type="s:dateTime" />
-          <s:element minOccurs="1" maxOccurs="1" name="WeekOfYear" type="s:int" />
-          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
-        </s:sequence>
-      </s:complexType>
-      <s:element name="GetEventsForWeek">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="week" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="year" nillable="true" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="GetEventsForWeekResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetEventsForWeekResult" type="tns:ArrayOfEventListItemViewModel" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="AddEvent">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="model" type="tns:EventAddViewModel" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:complexType name="EventAddViewModel">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="1" name="Date" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="TypeName" type="s:string" />
-        </s:sequence>
-      </s:complexType>
-      <s:element name="AddEventResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="AddEventResult" type="s1:guid" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="EditEvent">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="model" type="tns:EventEditViewModel" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:complexType name="EventEditViewModel">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s1:guid" />
-          <s:element minOccurs="0" maxOccurs="1" name="Date" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="TypeName" type="s:string" />
-        </s:sequence>
-      </s:complexType>
-      <s:element name="EditEventResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="EditEventResult" type="s1:guid" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="RemoveEvent">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="id" type="s1:guid" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="RemoveEventResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="RemoveEventResult" type="s:boolean" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="HelloWorld">
-        <s:complexType />
-      </s:element>
-      <s:element name="HelloWorldResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-    </s:schema>
-    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
-      <s:simpleType name="guid">
-        <s:restriction base="s:string">
-          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
-        </s:restriction>
-      </s:simpleType>
-    </s:schema>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/rsiProj1.ViewModels" />
+      <xs:element name="GetEventById">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="id" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetEventByIdResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/rsiProj1.ViewModels" minOccurs="0" name="GetEventByIdResult" nillable="true" type="q1:EventViewModel" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetEventsForDay">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="date" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetEventsForDayResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/rsiProj1.ViewModels" minOccurs="0" name="GetEventsForDayResult" nillable="true" type="q2:ArrayOfEventListItemViewModel" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetEventsForWeek">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="week" type="xs:int" />
+            <xs:element minOccurs="0" name="year" nillable="true" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetEventsForWeekResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/rsiProj1.ViewModels" minOccurs="0" name="GetEventsForWeekResult" nillable="true" type="q3:ArrayOfEventListItemViewModel" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetPdfSummaryForDay">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="date" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetPdfSummaryForDayResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GetPdfSummaryForDayResult" nillable="true" type="xs:base64Binary" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetPdfSummaryForWeek">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="week" type="xs:int" />
+            <xs:element minOccurs="0" name="year" nillable="true" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetPdfSummaryForWeekResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GetPdfSummaryForWeekResult" nillable="true" type="xs:base64Binary" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="anyType" nillable="true" type="xs:anyType" />
+      <xs:element name="anyURI" nillable="true" type="xs:anyURI" />
+      <xs:element name="base64Binary" nillable="true" type="xs:base64Binary" />
+      <xs:element name="boolean" nillable="true" type="xs:boolean" />
+      <xs:element name="byte" nillable="true" type="xs:byte" />
+      <xs:element name="dateTime" nillable="true" type="xs:dateTime" />
+      <xs:element name="decimal" nillable="true" type="xs:decimal" />
+      <xs:element name="double" nillable="true" type="xs:double" />
+      <xs:element name="float" nillable="true" type="xs:float" />
+      <xs:element name="int" nillable="true" type="xs:int" />
+      <xs:element name="long" nillable="true" type="xs:long" />
+      <xs:element name="QName" nillable="true" type="xs:QName" />
+      <xs:element name="short" nillable="true" type="xs:short" />
+      <xs:element name="string" nillable="true" type="xs:string" />
+      <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte" />
+      <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt" />
+      <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong" />
+      <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort" />
+      <xs:element name="char" nillable="true" type="tns:char" />
+      <xs:simpleType name="char">
+        <xs:restriction base="xs:int" />
+      </xs:simpleType>
+      <xs:element name="duration" nillable="true" type="tns:duration" />
+      <xs:simpleType name="duration">
+        <xs:restriction base="xs:duration">
+          <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?" />
+          <xs:minInclusive value="-P10675199DT2H48M5.4775808S" />
+          <xs:maxInclusive value="P10675199DT2H48M5.4775807S" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="guid" nillable="true" type="tns:guid" />
+      <xs:simpleType name="guid">
+        <xs:restriction base="xs:string">
+          <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:attribute name="FactoryType" type="xs:QName" />
+      <xs:attribute name="Id" type="xs:ID" />
+      <xs:attribute name="Ref" type="xs:IDREF" />
+    </xs:schema>
+    <xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/rsiProj1.ViewModels" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/rsiProj1.ViewModels" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xs:complexType name="EventViewModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Date" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Id" type="ser:guid" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TypeId" type="ser:guid" />
+          <xs:element minOccurs="0" name="TypeName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="WeekOfYear" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="EventViewModel" nillable="true" type="tns:EventViewModel" />
+      <xs:complexType name="ArrayOfEventListItemViewModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="EventListItemViewModel" nillable="true" type="tns:EventListItemViewModel" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfEventListItemViewModel" nillable="true" type="tns:ArrayOfEventListItemViewModel" />
+      <xs:complexType name="EventListItemViewModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Date" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Id" type="ser:guid" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="WeekOfYear" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="EventListItemViewModel" nillable="true" type="tns:EventListItemViewModel" />
+    </xs:schema>
   </wsdl:types>
-  <wsdl:message name="GetEventByIdSoapIn">
+  <wsdl:message name="IInfoService_GetEventById_InputMessage">
     <wsdl:part name="parameters" element="tns:GetEventById" />
   </wsdl:message>
-  <wsdl:message name="GetEventByIdSoapOut">
+  <wsdl:message name="IInfoService_GetEventById_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetEventByIdResponse" />
   </wsdl:message>
-  <wsdl:message name="GetEventsForDaySoapIn">
+  <wsdl:message name="IInfoService_GetEventsForDay_InputMessage">
     <wsdl:part name="parameters" element="tns:GetEventsForDay" />
   </wsdl:message>
-  <wsdl:message name="GetEventsForDaySoapOut">
+  <wsdl:message name="IInfoService_GetEventsForDay_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetEventsForDayResponse" />
   </wsdl:message>
-  <wsdl:message name="GetEventsForWeekSoapIn">
+  <wsdl:message name="IInfoService_GetEventsForWeek_InputMessage">
     <wsdl:part name="parameters" element="tns:GetEventsForWeek" />
   </wsdl:message>
-  <wsdl:message name="GetEventsForWeekSoapOut">
+  <wsdl:message name="IInfoService_GetEventsForWeek_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetEventsForWeekResponse" />
   </wsdl:message>
-  <wsdl:message name="AddEventSoapIn">
-    <wsdl:part name="parameters" element="tns:AddEvent" />
+  <wsdl:message name="IInfoService_GetPdfSummaryForDay_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPdfSummaryForDay" />
   </wsdl:message>
-  <wsdl:message name="AddEventSoapOut">
-    <wsdl:part name="parameters" element="tns:AddEventResponse" />
+  <wsdl:message name="IInfoService_GetPdfSummaryForDay_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPdfSummaryForDayResponse" />
   </wsdl:message>
-  <wsdl:message name="EditEventSoapIn">
-    <wsdl:part name="parameters" element="tns:EditEvent" />
+  <wsdl:message name="IInfoService_GetPdfSummaryForWeek_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPdfSummaryForWeek" />
   </wsdl:message>
-  <wsdl:message name="EditEventSoapOut">
-    <wsdl:part name="parameters" element="tns:EditEventResponse" />
+  <wsdl:message name="IInfoService_GetPdfSummaryForWeek_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPdfSummaryForWeekResponse" />
   </wsdl:message>
-  <wsdl:message name="RemoveEventSoapIn">
-    <wsdl:part name="parameters" element="tns:RemoveEvent" />
-  </wsdl:message>
-  <wsdl:message name="RemoveEventSoapOut">
-    <wsdl:part name="parameters" element="tns:RemoveEventResponse" />
-  </wsdl:message>
-  <wsdl:message name="HelloWorldSoapIn">
-    <wsdl:part name="parameters" element="tns:HelloWorld" />
-  </wsdl:message>
-  <wsdl:message name="HelloWorldSoapOut">
-    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
-  </wsdl:message>
-  <wsdl:portType name="InfoServiceSoap">
+  <wsdl:portType name="IInfoService">
     <wsdl:operation name="GetEventById">
-      <wsdl:input message="tns:GetEventByIdSoapIn" />
-      <wsdl:output message="tns:GetEventByIdSoapOut" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IInfoService/GetEventById" message="tns:IInfoService_GetEventById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInfoService/GetEventByIdResponse" message="tns:IInfoService_GetEventById_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetEventsForDay">
-      <wsdl:input message="tns:GetEventsForDaySoapIn" />
-      <wsdl:output message="tns:GetEventsForDaySoapOut" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IInfoService/GetEventsForDay" message="tns:IInfoService_GetEventsForDay_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInfoService/GetEventsForDayResponse" message="tns:IInfoService_GetEventsForDay_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetEventsForWeek">
-      <wsdl:input message="tns:GetEventsForWeekSoapIn" />
-      <wsdl:output message="tns:GetEventsForWeekSoapOut" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IInfoService/GetEventsForWeek" message="tns:IInfoService_GetEventsForWeek_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInfoService/GetEventsForWeekResponse" message="tns:IInfoService_GetEventsForWeek_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="AddEvent">
-      <wsdl:input message="tns:AddEventSoapIn" />
-      <wsdl:output message="tns:AddEventSoapOut" />
+    <wsdl:operation name="GetPdfSummaryForDay">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInfoService/GetPdfSummaryForDay" message="tns:IInfoService_GetPdfSummaryForDay_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInfoService/GetPdfSummaryForDayResponse" message="tns:IInfoService_GetPdfSummaryForDay_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="EditEvent">
-      <wsdl:input message="tns:EditEventSoapIn" />
-      <wsdl:output message="tns:EditEventSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="RemoveEvent">
-      <wsdl:input message="tns:RemoveEventSoapIn" />
-      <wsdl:output message="tns:RemoveEventSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="HelloWorld">
-      <wsdl:input message="tns:HelloWorldSoapIn" />
-      <wsdl:output message="tns:HelloWorldSoapOut" />
+    <wsdl:operation name="GetPdfSummaryForWeek">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInfoService/GetPdfSummaryForWeek" message="tns:IInfoService_GetPdfSummaryForWeek_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInfoService/GetPdfSummaryForWeekResponse" message="tns:IInfoService_GetPdfSummaryForWeek_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:binding name="InfoServiceSoap" type="tns:InfoServiceSoap">
-    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="GetEventById">
-      <soap:operation soapAction="http://tempuri.org/GetEventById" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetEventsForDay">
-      <soap:operation soapAction="http://tempuri.org/GetEventsForDay" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetEventsForWeek">
-      <soap:operation soapAction="http://tempuri.org/GetEventsForWeek" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="AddEvent">
-      <soap:operation soapAction="http://tempuri.org/AddEvent" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="EditEvent">
-      <soap:operation soapAction="http://tempuri.org/EditEvent" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="RemoveEvent">
-      <soap:operation soapAction="http://tempuri.org/RemoveEvent" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="HelloWorld">
-      <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-  </wsdl:binding>
-  <wsdl:binding name="InfoServiceSoap12" type="tns:InfoServiceSoap">
+  <wsdl:binding name="SecureHttp" type="tns:IInfoService">
+    <wsp:PolicyReference URI="#SecureHttp_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="GetEventById">
-      <soap12:operation soapAction="http://tempuri.org/GetEventById" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/IInfoService/GetEventById" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -298,7 +240,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetEventsForDay">
-      <soap12:operation soapAction="http://tempuri.org/GetEventsForDay" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/IInfoService/GetEventsForDay" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -307,7 +249,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetEventsForWeek">
-      <soap12:operation soapAction="http://tempuri.org/GetEventsForWeek" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/IInfoService/GetEventsForWeek" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -315,8 +257,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="AddEvent">
-      <soap12:operation soapAction="http://tempuri.org/AddEvent" style="document" />
+    <wsdl:operation name="GetPdfSummaryForDay">
+      <soap12:operation soapAction="http://tempuri.org/IInfoService/GetPdfSummaryForDay" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -324,26 +266,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="EditEvent">
-      <soap12:operation soapAction="http://tempuri.org/EditEvent" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="RemoveEvent">
-      <soap12:operation soapAction="http://tempuri.org/RemoveEvent" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="HelloWorld">
-      <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+    <wsdl:operation name="GetPdfSummaryForWeek">
+      <soap12:operation soapAction="http://tempuri.org/IInfoService/GetPdfSummaryForWeek" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -353,11 +277,11 @@
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="InfoService">
-    <wsdl:port name="InfoServiceSoap" binding="tns:InfoServiceSoap">
-      <soap:address location="https://localhost:44314/Services/InfoService.asmx" />
-    </wsdl:port>
-    <wsdl:port name="InfoServiceSoap12" binding="tns:InfoServiceSoap12">
-      <soap12:address location="https://localhost:44314/Services/InfoService.asmx" />
+    <wsdl:port name="SecureHttp" binding="tns:SecureHttp">
+      <soap12:address location="https://localhost:44314/Services/InfoService.svc" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>https://localhost:44314/Services/InfoService.svc</wsa10:Address>
+      </wsa10:EndpointReference>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
